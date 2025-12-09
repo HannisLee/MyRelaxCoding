@@ -1,13 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
 class Solution {
 public:
-    int specialTriplets(vector<int>& nums) {
+    int countPermutations(vector<int>& complexity) {
         const int MOD = 1000000007;
         long long count=0;
         unordered_map<int,int> mp;
-        for (auto i:nums)mp[i]++;
+        for (auto i:complexity)mp[i]++;
         unordered_map<int,int> now_mp;
         for (auto i:nums){
 

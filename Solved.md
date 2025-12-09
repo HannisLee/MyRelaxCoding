@@ -1,5 +1,26 @@
+# 3577.[统计计算机解锁顺序排列数](https://leetcode.cn/problems/count-the-number-of-computer-unlocking-permutations/)
 
-3583.[统计特殊三元组](https://leetcode.cn/problems/count-special-triplets/)
+```c++
+class Solution {
+public:
+    int countPermutations(vector<int>& complexity) {
+        int n = complexity.size();
+        if (*min_element(complexity.begin() + 1, complexity.end()) <= complexity[0]) {
+            return 0;
+        }
+
+        int mod = 1000000007;
+        int ans = 1;
+        for (int i = 2; i < n; ++i) {
+            ans = static_cast<long long>(ans) * i % mod;
+        }
+        return ans;
+    }
+};
+```
+
+# 3583.[统计特殊三元组](https://leetcode.cn/problems/count-special-triplets/)
+
 ```c++
 class Solution {
 public:
@@ -24,7 +45,7 @@ public:
 
 
 
-994.[腐烂的橘子](https://leetcode.cn/problems/rotting-oranges/)
+# 994.[腐烂的橘子](https://leetcode.cn/problems/rotting-oranges/)
 
 ```c++
 class Solution {
