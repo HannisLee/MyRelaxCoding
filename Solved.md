@@ -1,3 +1,29 @@
+
+3583.[统计特殊三元组](https://leetcode.cn/problems/count-special-triplets/)
+```c++
+class Solution {
+public:
+    int specialTriplets(vector<int>& nums) {
+        const int MOD = 1000000007;
+        long long count=0;
+        unordered_map<int,int> mp;
+        for (auto i:nums)mp[i]++;
+        unordered_map<int,int> now_mp;
+        for (auto i:nums){
+
+            long long left = now_mp[i*2];
+            now_mp[i]++;
+            long long right = mp[i*2]-now_mp[i*2];
+            count+=left*right;
+            count%=MOD;
+        }
+        return count;
+    }
+};
+```
+
+
+
 994.[腐烂的橘子](https://leetcode.cn/problems/rotting-oranges/)
 
 ```c++
