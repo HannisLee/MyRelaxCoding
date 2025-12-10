@@ -1,3 +1,39 @@
+# 3531.[统计被覆盖的建筑](https://leetcode.cn/problems/count-covered-buildings/)
+
+```c++
+class Solution {
+public:
+    int countCoveredBuildings(int n, vector<vector<int>>& buildings) {
+        
+        vector<pair<int, int>> line(n+1, {n, -1});   // [min_y, max_y] for each row x
+        vector<pair<int, int>> list(n+1, {n, -1});   // [min_x, max_x] for each col y
+
+        for (auto& b : buildings) {
+            int x = b[0], y = b[1];
+            line[x].first = min(line[x].first, y);
+            line[x].second = max(line[x].second, y);
+            list[y].first = min(list[y].first, x);  
+            list[y].second = max(list[y].second, x); 
+        }
+
+        int count = 0;
+        for (auto& b : buildings) {
+            int x = b[0], y = b[1];
+            
+            bool hasLeftRight = (line[x].first < y) && (line[x].second > y);
+            
+            bool hasUpDown = (list[y].first < x) && (list[y].second > x);
+            if (hasLeftRight && hasUpDown) {
+                count++;
+            }
+        }
+        return count;
+    }
+};
+```
+
+
+
 # 3577.[统计计算机解锁顺序排列数](https://leetcode.cn/problems/count-the-number-of-computer-unlocking-permutations/)
 
 ```c++

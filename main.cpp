@@ -4,29 +4,38 @@ using namespace std;
 
 class Solution {
 public:
-    int countPermutations(vector<int>& complexity) {
-        const int MOD = 1000000007;
-        long long count=0;
-        unordered_map<int,int> mp;
-        for (auto i:complexity)mp[i]++;
-        unordered_map<int,int> now_mp;
-        for (auto i:nums){
+    int countCoveredBuildings(int n, vector<vector<int>>& buildings) {
 
-            long long left = now_mp[i*2];
-            now_mp[i]++;
-            long long right = mp[i*2]-now_mp[i*2];
-            count+=left*right;
-            count%=MOD;
+        vector<pair<int, int>> line(n+1, {n, -1});
+        vector<pair<int, int>> list(n+1, {n, -1});
+
+        for (auto& b : buildings) {
+            int x = b[0], y = b[1];
+            line[x].first = min(line[x].first, y);
+            line[x].second = max(line[x].second, y);
+            list[y].first = min(list[y].first, x);
+            list[y].second = max(list[y].second, x);
+        }
+
+        int count = 0;
+        for (auto& b : buildings) {
+            int x = b[0], y = b[1];
+
+            bool hasLeftRight = (line[x].first < y) && (line[x].second > y);
+
+            bool hasUpDown = (list[y].first < x) && (list[y].second > x);
+            if (hasLeftRight && hasUpDown) {
+                count++;
+            }
         }
         return count;
     }
 };
-
 int main() {
-
-    vector<vector<int>> gg={{2,1,1},{1,1,0},{0,1,1}};
     Solution s;
-    cout<<s.orangesRotting(gg)<<endl;
+
+    vector<vector<int>> gg={{1,3},{3,2},{3,3},{3,5},{5,3}};
+    cout<<s.countCoveredBuildings(5,gg)<<endl;
 
 
 
