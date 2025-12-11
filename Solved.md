@@ -1,3 +1,51 @@
+# 290.[单词规律](https://leetcode.cn/problems/word-pattern/)
+
+```c++
+class Solution {
+public:
+    bool wordPattern(string pattern, string s) {
+        unordered_map<char, string> mp1; // 用来存储字符到单词的映射
+        unordered_map<string, char> mp2; // 用来存储单词到字符的映射
+        int idx = 0;
+        int last = 0;
+        s.push_back(' '); // 给字符串末尾加一个空格，方便处理最后一个单词
+        
+        for (int i = 0; i < s.size(); i++) {
+            if (isalpha(s[i])) {
+                continue;
+            }
+            else {
+                string temp = s.substr(last, i - last); 
+                if (mp1.count(pattern[idx])) {
+                    if (mp1[pattern[idx]] != temp) {
+                        return false; 
+                    }
+                } else {
+                    mp1[pattern[idx]] = temp; 
+                }
+
+                if (mp2.count(temp)) {
+                    if (mp2[temp] != pattern[idx]) {
+                        return false; 
+                    }
+                } else {
+                    mp2[temp] = pattern[idx]; 
+                }
+
+                last = i + 1; 
+                idx++; 
+            }
+        }
+        
+        
+        return idx == pattern.size();
+    }
+};
+
+```
+
+
+
 # 3531.[统计被覆盖的建筑](https://leetcode.cn/problems/count-covered-buildings/)
 
 ```c++
