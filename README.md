@@ -1737,6 +1737,43 @@ cout << bs << endl;   // 输出 00101010
 - **快速判重**：用作布隆过滤器的简单实现。
 - **位运算模拟**：快速处理二进制数据（比 `vector<bool>` 更快）。
 
+## Hash处理和function
+
+```c++
+# 模板处理
+struct PairHash {
+    template<typename T, typename U>
+    size_t operator()(const pair<T, U>& p) const {
+        auto h1 = hash<T>{}(p.first);
+        auto h2 = hash<U>{}(p.second);
+        return h1 ^ (h2 << 1);
+    }
+};
+unordered_map<pair<string, string>, int, PairHash> mp;
+```
+
+```c++
+using HashPair = function<size_t(const pair<int, int>&)>;
+
+auto my_hash = [](const pair<int, int>& p) {
+    return hash<int>{}(p.first) ^ (hash<int>{}(p.second) << 1);
+};
+
+unordered_map<pair<int, int>, int, HashPair> mp(0, my_hash);
+```
+
+## 动态function选择
+
+```c++
+function<bool(int, int)> cmp;
+if (flag == 1) {
+    cmp = [](int a, int b) { return a < b; };
+} else {
+    cmp = [](int a, int b) { return a > b; };
+}
+sort(v.begin(), v.end(), cmp);
+```
+
 # 输入输出处理
 
 ```
@@ -1755,6 +1792,8 @@ while (t--) {
 }
 ```
 
+
+
 # 方便函数
 
 ## 数字处理
@@ -1770,8 +1809,6 @@ round(x)
 trunc(2.9)---->2.0
 ```
 
-
-
 ## 进制转换
 
 ```c++
@@ -1782,8 +1819,6 @@ int x = stoi(s,nullptr,16);
 cout<<x;
 //255
 ```
-
-
 
 ```c++
 //2转16

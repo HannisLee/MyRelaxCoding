@@ -1,6 +1,28 @@
-# 3606.[优惠券校验器](https://leetcode.cn/problems/coupon-code-validator/)
+# [944. 删列造序](https://leetcode.cn/problems/delete-columns-to-make-sorted/)
 
+```c++
+class Solution {
+public:
+    int minDeletionSize(vector<string>& strs) {
+        int n = strs.size();
+        int m = strs[0].size();
+        int count = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n - 1; j++) {
+                if (strs[j][i] > strs[j + 1][i]) {
+                    count++;
+                    break;
+                }
+            }
+        }
+        return count;
+    }
+};
 ```
+
+# [3606.优惠券校验器](https://leetcode.cn/problems/coupon-code-validator/)
+
+```c++
 class Solution {
 public:
     vector<string> validateCoupons(vector<string>& code, vector<string>& businessLine, vector<bool>& isActive) {
@@ -45,9 +67,7 @@ public:
 };
 ```
 
-
-
-# 290.[单词规律](https://leetcode.cn/problems/word-pattern/)
+# [290.单词规律](https://leetcode.cn/problems/word-pattern/)
 
 ```c++
 class Solution {
@@ -93,9 +113,7 @@ public:
 
 ```
 
-
-
-# 3531.[统计被覆盖的建筑](https://leetcode.cn/problems/count-covered-buildings/)
+# [3531.统计被覆盖的建筑](https://leetcode.cn/problems/count-covered-buildings/)
 
 ```c++
 class Solution {
@@ -131,7 +149,7 @@ public:
 
 
 
-# 3577.[统计计算机解锁顺序排列数](https://leetcode.cn/problems/count-the-number-of-computer-unlocking-permutations/)
+# [3577.统计计算机解锁顺序排列数](https://leetcode.cn/problems/count-the-number-of-computer-unlocking-permutations/)
 
 ```c++
 class Solution {
@@ -152,7 +170,7 @@ public:
 };
 ```
 
-# 3583.[统计特殊三元组](https://leetcode.cn/problems/count-special-triplets/)
+# [3583.统计特殊三元组](https://leetcode.cn/problems/count-special-triplets/)
 
 ```c++
 class Solution {
@@ -178,7 +196,7 @@ public:
 
 
 
-# 994.[腐烂的橘子](https://leetcode.cn/problems/rotting-oranges/)
+# [994.腐烂的橘子](https://leetcode.cn/problems/rotting-oranges/)
 
 ```c++
 class Solution {
@@ -229,7 +247,7 @@ public:
 
 
 
-# 1925.[统计平方和三元组的数目](https://leetcode.cn/problems/count-square-sum-triples/)
+# [1925.统计平方和三元组的数目](https://leetcode.cn/problems/count-square-sum-triples/)
 
 ```c++
 class Solution {
