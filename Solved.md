@@ -1,3 +1,31 @@
+# [955. 删列造序 II](https://leetcode.cn/problems/delete-columns-to-make-sorted-ii/)
+
+```
+class Solution {
+public:
+    int minDeletionSize(vector<string>& strs) {
+        int n = strs.size();
+        int m = strs[0].size();
+        int count = 0;
+        int flag1=0;
+        for (int i = 0; i < m; i++) {
+            flag1=0;
+            for (int j = 0; j < n - 1; j++) {
+                if (strs[j][i] > strs[j + 1][i]) {
+                    count++;
+                    flag1=1;
+                    break;
+                }
+            }
+            if (flag1==0){
+                return count;
+            }
+        }
+        return count;
+    }
+};
+```
+
 # [944. 删列造序](https://leetcode.cn/problems/delete-columns-to-make-sorted/)
 
 ```c++
