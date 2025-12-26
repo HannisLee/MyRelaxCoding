@@ -1,31 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
 class Solution {
 public:
-    int minDeletionSize(vector<string>& strs) {
-        int n = strs.size();
-        int m = strs[0].size();
-        int count = 0;
-        int flag1=0;
-        for (int i = 0; i < m; i++) {
-            flag1=0;
-            for (int j = 0; j < n - 1; j++) {
-                if (strs[j][i] > strs[j + 1][i]) {
-                    count++;
-                    flag1=1;
-                    break;
-                }
-            }
-            if (flag1==0){
-                return count;
+    int bestClosingTime(string customers) {
+        int n = customers.size();
+        vector<int> pre(n + 1, 0);
+        vector<int> suf(n + 1, 0);
+
+        for (int i = 0; i < n; ++i) {
+            pre[i + 1] = pre[i] + (customers[i] == 'N');
+        }
+        for (int i = n - 1; i >= 0; --i) {
+            suf[i] = suf[i + 1] + (customers[i] == 'Y');
+        }
+
+        int minPenalty = INT_MAX;
+        int bestHour = 0;
+        for (int i = 0; i <= n; ++i) {
+            int penalty = pre[i] + suf[i];
+            if (penalty < minPenalty) {
+                minPenalty = penalty;
+                bestHour = i;
             }
         }
-        return count;
+        return bestHour;
     }
 };
-
 
 int main() {
     Solution s;
