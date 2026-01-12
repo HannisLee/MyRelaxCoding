@@ -1,6 +1,6 @@
 ```bash
 git add .
-hit commit -m "1266"
+git commit -m "1266"
 git push
 ```
 # [1266. 访问所有点的最小时间](https://leetcode.cn/problems/minimum-time-visiting-all-points/)
