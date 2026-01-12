@@ -1,4 +1,33 @@
+```bash
+git add .
+hit commit -m "1266"
+git push
+```
+# [1266. 访问所有点的最小时间](https://leetcode.cn/problems/minimum-time-visiting-all-points/)
 
+```c++
+class Solution {
+public:
+    int getDis(vector<int>a,vector<int>b){
+        int x1=a[0],y1=a[1];
+        int x2=b[0],y2=b[1];
+        int x = abs(x1-x2);
+        int y = abs(y1-y2);
+        if(x==y)return x;
+        if(x>y)return x;
+        else return y;
+    }
+    int minTimeToVisitAllPoints(vector<vector<int>>& points) {
+        int x0 = points[0][0], x1 = points[0][1];
+        int ans = 0;
+        for (int i = 1; i < points.size(); ++i) {
+            ans += getDis(points[i-1],points[i]);
+        }
+        return ans;
+        
+    }
+};
+```
 
 # [2483. 商店的最少代价](https://leetcode.cn/problems/minimum-penalty-for-a-shop/)
 
